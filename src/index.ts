@@ -1,6 +1,9 @@
-import { printBoard, randomBoard } from "./board";
+import { createBoard, printBoard } from "./board.js";
+let generation = 0;
 
-const board = randomBoard(5, 5);
-
-randomBoard;
-printBoard(board);
+setInterval(() => {
+  const board = createBoard(10, 20);
+  console.log(printBoard(board));
+  generation++;
+  console.log(`Generation: ${generation}`);
+}, 300);
