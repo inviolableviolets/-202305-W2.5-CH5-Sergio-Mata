@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Bebas Neue", serif;
+  min-width: 320px;
+}
+
+@mixin mobile {
+  @media only screen and (min-width: #{$breakpoint_mobile}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: #{$breakpoint_desktop}) {
+    @content;
+  }
+}
