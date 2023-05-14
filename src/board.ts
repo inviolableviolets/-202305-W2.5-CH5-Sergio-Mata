@@ -11,8 +11,6 @@ export const createBoard = (rows: number, columns: number) => {
 };
 
 export const printBoard = (board: number[][]) => {
-  console.clear();
-
   let printedBoard = "";
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
