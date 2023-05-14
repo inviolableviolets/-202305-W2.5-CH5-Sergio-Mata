@@ -1,9 +1,22 @@
 import { createBoard, printBoard } from "./board.js";
-let generation = 0;
+import { getNextGenerationBoard, getAliveCells } from "./neighbours.js";
 
-setInterval(() => {
-  const board = createBoard(10, 20);
+const playGameOfLife = (rows: number, columns: number) => {
+  let generation = 0;
+
+  const board = createBoard(rows, columns);
   console.log(printBoard(board));
-  generation++;
-  console.log(`Generation: ${generation}`);
-}, 300);
+
+  setInterval(() => {
+    console.clear();
+    const nextGeneration = getNextGenerationBoard(board);
+    let aliveCells = getAliveCells(nextGeneration);
+    console.log(printBoard(nextGeneration));
+
+    generation++;
+    console.log(`Generation: ${generation}`);
+    console.log(`Alive cells: ${aliveCells}`);
+  }, 200);
+};
+
+playGameOfLife(20, 60);

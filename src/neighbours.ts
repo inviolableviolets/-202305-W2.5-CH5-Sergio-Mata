@@ -1,45 +1,73 @@
 import { createBoard } from "./board.js";
 
-const board = createBoard(10, 20);
+const getCellNeighbours = (board: number[][]) => {
+  let neighboursUpdatedBoard: number[][] = [];
 
-export const checkNeighbourPossiblePositions = (
-  column = 0,
-  row = 0,
-  cell: number[][]
-) => {
-  const possiblePositions = [
-    [column - 1, row - 1],
-    [column - 1, row],
-    [column - 1, row + 1],
-    [column, row - 1],
-    [column, row + 1],
-    [column + 1, row - 1],
-    [column + 1, row],
-    [column + 1, row + 1],
-  ];
+  for (let row = 0; row < board.length; row++) {
+    let neighboursUpdatedRow: number[] = [];
 
-  return possiblePositions;
-};
+    for (let column = 0; column < board[row].length; column++) {
+      let neighboursCount = 0;
 
-const cellExample = [
-  [0, 0, 0],
-  [1, 1, 1],
-  [1, 1, 0],
-];
-
-const countNeighbours = (cell: number[][]) => {
-  let neighboursCount = 0;
-
-  for (let i = 0; i < cell.length; i++) {
-    for (let j = 0; j < cell[i].length; j++) {
-      if (cell[i][j] === 1) {
+      if (board[row - 1] && board[row - 1][column - 1] === 1) {
         neighboursCount++;
       }
-    }
-  }
-  if (cell[1][1] === 1 && neighboursCount > 0) neighboursCount--;
 
-  return neighboursCount;
+      if (board[row - 1] && board[row - 1][column] === 1) {
+        neighboursCount++;
+      }
+
+      if (board[row - 1] && board[row - 1][column + 1] === 1) {
+        neighboursCount++;
+      }
+
+      if (board[row][column - 1] && board[row][column - 1] === 1) {
+        neighboursCount++;
+      }
+
+      if (board[row][column + 1] && board[row][column + 1] === 1) {
+        neighboursCount++;
+      }
+
+      if (board[row + 1] && board[row + 1][column - 1] === 1) {
+        neighboursCount++;
+      }
+
+      if (board[row + 1] && board[row + 1][column] === 1) {
+        neighboursCount++;
+      }
+
+      if (board[row + 1] && board[row + 1][column + 1] === 1) {
+        neighboursCount++;
+      }
+
+      neighboursUpdatedRow.push(neighboursCount);
+    }
+
+    neighboursUpdatedBoard.push(neighboursUpdatedRow);
+  }
+  return neighboursUpdatedBoard;
 };
 
-console.log(countNeighbours(cellExample));
+export const getAliveCells = (board: number[][]) => {
+  let aliveCellsCount = 0;
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      aliveCellsCount += board[i][j];
+    }
+  }
+  return aliveCellsCount;
+};
+
+export const getNextGenerationBoard = (board: number[][]) => {
+  const neighboursBoard = getCellNeighbours(board);
+
+  for (let i = 0; i < neighboursBoard.length; i++) {
+    for (let j = 0; j < neighboursBoard[i].length; j++) {
+      if (neighboursBoard[i][j] < 2) board[i][j] = 0;
+      if (neighboursBoard[i][j] > 3) board[i][j] = 0;
+      if (neighboursBoard[i][j] === 3) board[i][j] = 1;
+    }
+  }
+  return board;
+};
