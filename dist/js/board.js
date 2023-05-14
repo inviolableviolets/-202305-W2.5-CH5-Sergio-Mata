@@ -13,10 +13,10 @@ export const printBoard = (board) => {
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
             if (board[i][j] === 1) {
-                printedBoard += "⬜";
+                printedBoard += "⚪";
             }
             if (board[i][j] === 0) {
-                printedBoard += "⬛";
+                printedBoard += "⚫";
             }
         }
         printedBoard += "\n";

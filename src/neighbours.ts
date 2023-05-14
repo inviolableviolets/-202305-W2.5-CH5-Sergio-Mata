@@ -1,5 +1,3 @@
-import { createBoard } from "./board.js";
-
 const getCellNeighbours = (board: number[][]) => {
   let neighboursUpdatedBoard: number[][] = [];
 
