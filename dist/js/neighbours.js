@@ -1,4 +1,4 @@
-const getCellNeighbours = (board) => {
+export const getCellNeighbours = (board) => {
     let neighboursUpdatedBoard = [];
     for (let row = 0; row < board.length; row++) {
         let neighboursUpdatedRow = [];
