@@ -1,4 +1,5 @@
-export const getCellNeighbours = (board) => {
+import { createBoard } from "./board.js";
+const getCellNeighbours = (board) => {
     let neighboursUpdatedBoard = [];
     for (let row = 0; row < board.length; row++) {
         let neighboursUpdatedRow = [];
@@ -34,6 +35,9 @@ export const getCellNeighbours = (board) => {
     }
     return neighboursUpdatedBoard;
 };
+const board = createBoard(5, 5);
+console.log(board);
+console.log(getCellNeighbours(board));
 export const getAliveCells = (board) => {
     let aliveCellsCount = 0;
     for (let i = 0; i < board.length; i++) {

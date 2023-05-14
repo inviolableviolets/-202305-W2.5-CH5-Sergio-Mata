@@ -1,6 +1,4 @@
-import { createBoard } from "./board.js";
-
-const getCellNeighbours = (board: number[][]) => {
+export const getCellNeighbours = (board: number[][]) => {
   let neighboursUpdatedBoard: number[][] = [];
 
   for (let row = 0; row < board.length; row++) {
